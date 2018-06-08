@@ -17,10 +17,10 @@
 # or tort (including negligence or otherwise) arising in any way out of
 # the use of this software, even if advised of the possibility of such damage.
 #
-# @Time    : 18-5-28 下午4:04
-# @Author  : Gavin.Xu
-# @Email   : Gavin.Xu@bmw.com
-# @File    : config.py
+# @Time    : 18-5-24
+# @Author  : Celi Sun
+# @Superviso: Gavin.Xu (Gavin.Xu@bmw.com)
+# @Department: EG-CN-72
 #
 
 import argparse
