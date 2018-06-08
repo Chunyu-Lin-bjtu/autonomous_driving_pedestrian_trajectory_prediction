@@ -17,9 +17,9 @@
 # or tort (including negligence or otherwise) arising in any way out of
 # the use of this software, even if advised of the possibility of such damage.
 #
-# @Time    : 18-5-25
-# @Author  : Gavin.Xu
-# @Email   : Gavin.Xu@bmw.com
+# @Time    : 18-5-24
+# @Author  : Celi Sun
+# @Superviso: Gavin.Xu (Gavin.Xu@bmw.com)
 # @Department: EG-CN-72
 
 import numpy as np
