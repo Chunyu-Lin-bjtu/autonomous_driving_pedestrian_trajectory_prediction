@@ -18,8 +18,8 @@
 # the use of this software, even if advised of the possibility of such damage.
 #
 # @Time    : 18-5-24
-# @Author  : Gavin.Xu
-# @Email   : Gavin.Xu@bmw.com
+# @Author  : Celi Sun
+# @Superviso: Gavin.Xu (Gavin.Xu@bmw.com)
 # @Department: EG-CN-72
 
 import os
