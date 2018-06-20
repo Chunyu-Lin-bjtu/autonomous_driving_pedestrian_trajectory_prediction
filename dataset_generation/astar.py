@@ -22,6 +22,7 @@
 # @Superviso: Gavin.Xu (Gavin.Xu@bmw.com)
 # @Department: EG-CN-72
 
+
 import numpy as np
 import math
 
@@ -51,17 +52,9 @@ class AStarNode(object):
     def g(self):
         return self._g
 
-    @g.setter
-    def g(self, other):
-        self._g = other
-
     @property
     def h(self):
         return self._h
-
-    @h.setter
-    def h(self, other):
-        self._h = other
 
     @property
     def type(self):
@@ -71,9 +64,6 @@ class AStarNode(object):
     def parent_node(self):
         return self._parent_node
 
-    @parent_node.setter
-    def parent_node(self, other):
-        self._parent_node = other
 
     @property
     def raw_width(self):
@@ -98,6 +88,18 @@ class AStarNode(object):
     @property
     def adjacent_list(self):
         return self._adjacent_list
+
+    @h.setter
+    def h(self, other):
+        self._h = other
+
+    @g.setter
+    def g(self, other):
+        self._g = other
+
+    @parent_node.setter
+    def parent_node(self, other):
+        self._parent_node = other
 
 
 class AStarSearch(object):
@@ -190,12 +192,12 @@ class AStarSearch(object):
 
     def search(self, start_point, end_point):
         """
-        Search the trajectory from start point to the end point following the A* algorithm
+        Search the trajectory from start point to end point using the A* algorithm
 
         :param start_point: pixel position of the starting point, it's a tuple (x, y)
         :param end_point: pixel position of the ending point, it's a tuple (x, y)
-        :return: trajectory from start point to end, it is a list of pixel positions tuple (x, y).
-                 return none if path not found
+        :return: trajectory from start point to end, it is a list of pixel position of tuple (x, y);
+                 or None if no path found
         """
         self._start_point = start_point
         self._end_point = end_point
@@ -371,7 +373,6 @@ class AStarSearch(object):
         x = pixel_pos[0] // self.k
         y = pixel_pos[1] // self.k
         return self._grid_matrix[x][y]
-
 
 
 
