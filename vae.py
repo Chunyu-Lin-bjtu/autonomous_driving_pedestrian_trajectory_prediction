@@ -19,7 +19,11 @@ input_dim = args.target_size ** 2 * 1
 w = h = args.target_size
 
 class VariantionalAutoencoder(object):
-
+    """
+    an encoder-decoder for context image. the z code of the encoder is used to
+    combine with the trajectory information for further RNN training.
+    """
+    
     def __init__(self, learning_rate=1e-3, batch_size=100, n_z=5):
         self.learning_rate = learning_rate
         self.batch_size = batch_size
