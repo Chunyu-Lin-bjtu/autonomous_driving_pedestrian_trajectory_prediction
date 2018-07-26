@@ -1,5 +1,5 @@
-import argparse
 
+import argparse
 
 def set_train_args():
     """
@@ -9,76 +9,60 @@ def set_train_args():
     """
     parser = argparse.ArgumentParser()
 
-    # Number of epochs parameter
-    parser.add_argument('--num_epochs', type=int, default=40,
-                        help='number of epochs')
-
-    parser.add_argument('--save_every_epoch', type=int, default=10,
-                        help='save model variables for every how many epoch(s)')
-
     # size of each batch for training dataset parameter
     parser.add_argument('--batch_size', type=int, default=32,
                         help='training set minibatch size')
 
-    # width of context map parameter
-    parser.add_argument('--width', type=int, default=1280,
-                        help='width of the context map')
+    # size of history window not including the current point
+    parser.add_argument('--history_window', type=int, default=32,
+                        help='size of history window trajectory')
+    # predict frequency
+    parser.add_argument('--frequency', type=int, default=20,
+                        help='predict frequency')
 
-    # height of context map parameter
-    parser.add_argument('--height', type=int, default=1280,
-                        help='height of the context map')
-
-    # number of input trajectory point parameter
     parser.add_argument('--seq_length', type=int, default=64,
-                        help='number of input trajectory point')
+                        help='length of the time sequence')
 
-    # output size of convolution network parameter
-    parser.add_argument('--target_size_initial', type=int, default=512,
-                        help='output size of cnn')
-
-    # filter size of convolution network parameter
-    parser.add_argument('--filter_size', type=int, default=32,
-                        help='filter size of cnn')
-
-    # dropout probability parameter for dropout layer in convolution network
-    parser.add_argument('--dropout', type=float, default=0.5,
-                        help='dropout probability of dropout layer in cnn')
+    parser.add_argument('--feature_size', type=int, default=2,
+                        help='feature size')
 
     # number of discrete steps
     parser.add_argument('--discrete_timestamps', type=list, default=[1, 2, 3, 4, 5, 6],
                         help='List of the specific timestamp to be predict')
 
-    # predict frequency
-    parser.add_argument('--frequency', type=int, default=20,
-                        help='predict frequency')
+    # patch size / mask size
+    parser.add_argument('--patch_size', type=int, default=1280,
+                        help='input patch size')
 
-    # size of feature, i.e. a trajectory point representation
-    parser.add_argument('--feature_size', type=int, default=2,
-                        help='size of a trajectory point')
+    # size of resized patch
+    parser.add_argument('--target_size', type=int, default=160,
+                        help='size of resized patch, ready to feed in network')
 
-    # RNN size parameter (dimension of the output/hidden state)
-    parser.add_argument('--rnn_size', type=int, default=128,
-                        help='size of RNN output and hidden state')
+    # learning rate for unet parameter
+    parser.add_argument('--learning_rate', type=float, default=0.01,
+                        help='learning rate for RNN')
 
-    # Number of layers in RNN parameter
+    # z value size in vae
+    parser.add_argument('--n_z', type=int, default=100,         # 5
+                        help='vae network z value size')
+
+    parser.add_argument('--rnn_size', type=int, default=126,
+                        help='the output size of rnn')
+
     parser.add_argument('--n_layers', type=int, default=2,
-                        help='number of layers for each cell in the RNN')
+                        help='the output size of rnn')
 
     # Dropout probability parameter
     parser.add_argument('--keep_prob', type=float, default=0.8,
                         help='dropout keep probability')
 
-    # learning rate for RNN parameter
-    parser.add_argument('--learning_rate', type=float, default=0.01,
-                        help='learning rate for RNN')
+    # -- training
+    # Number of epochs parameter
+    parser.add_argument('--num_epochs', type=int, default=200,
+                        help='number of epochs')
 
-    # momentum for RNN
-    parser.add_argument('--momentum', type=float, default=0.9,
-                        help='momentum for RNN')
-
-    # mode
-    parser.add_argument('--mode', type=str, default='train',
-                        help='train or infer')
+    parser.add_argument('--save_every_epoch', type=int, default=1,
+                        help='save model variables for every how many epoch(s)')
 
     # directory for train summary FileWriter
     parser.add_argument('--train_summary', type=str, default='./train/',
@@ -87,6 +71,43 @@ def set_train_args():
     # directory for val summary FileWriter
     parser.add_argument('--val_summary', type=str, default='./val/',
                         help='val summary FileWriter')
+
+    # mode
+    parser.add_argument('--mode', type=str, default='train',
+                        help='train or infer')
+
+    # root directory of dataset data
+    parser.add_argument('--data_root_dir', type=str, default='../dataset_data/',
+                        help='root directory of dataset data')
+
+    # root directory of context jpg image files
+    parser.add_argument('--context_files_root_dir', type=str, default='../dataset/context/',
+                        help='root directory of context jpg image files')
+
+    # root directory of trajectory csv files
+    parser.add_argument('--csv_files_root_dir', type=str, default='../dataset/trajectory/',
+                        help='root directory of trajectory csv files')
+
+    # directory path to dump model parameters while training
+    parser.add_argument('--dump_model_para_root_dir', type=str, default='../vm_model/',
+                        help='directory path to dump model parameters while training')
+
+    parser.add_argument('--model_loading_path_vae', type=str, default='../vae_model/epoch500: 8270.86425781.ckpt',
+                        help='pre-trained vae model parameters loading path')
+
+    # ---infer
+    # File dump path for visualization jpg
+    parser.add_argument('--infer_dump_path', type=str, default='',
+                        help='dump path of visualization pic')
+
+    # /home/yuhuang/Desktop/WorldModelPredictor/vm_model/epoch53_37.866946_35.920916.ckpt.meta
+    parser.add_argument('--optimal_model_path', type=str, default='../vm_model/epoch53_37.866946_35.920916.ckpt',
+                        help='optimal model path to load from')
+
+    # number of samples to visusalize
+    parser.add_argument('--num_samples', type=int, default=5,
+                        help='number of random samples in batch to visualize')
+
 
     args = parser.parse_args()
     return args
