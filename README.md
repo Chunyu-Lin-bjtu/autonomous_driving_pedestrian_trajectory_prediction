@@ -29,7 +29,7 @@ vru3:  	 -	   (-)	      -                     context   x/y (or x,y + delta x,y)
 vru_s:   	    -	      -			              all     -
 
 '-' means in use.
-'all' in RNN means the x,y or delta x, y featuers with the output vector of CNN  if appicable.
+'all' in RNN means the x,y or delta x, y featuers with the output vector of CNN (or context itself).
 </pre>
 
 #### VAE 
