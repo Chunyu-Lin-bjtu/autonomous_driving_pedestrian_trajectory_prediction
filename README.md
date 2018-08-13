@@ -34,5 +34,6 @@ vru_s:   	    -	      -			              all     -
 
 We lalso tried to use a autoencoder vae to encode the context patches and combine with the x/y feature.The following is a visualization of trained vae model for context images.
 
+<img src="https://raw.githubusercontent.com/celisun/ROS-STDR-simulation/master/src/tb3-LABEL.png" width="120">
 
 
