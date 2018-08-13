@@ -1,10 +1,11 @@
 # Autonomous Driving Human Trajectory Prediction
-human and vehicle trajectory prediction in dynmaic scenes. In progress
 
-This is a pilot project, our purpose is to train models to predict human trajectories given the past trajectory. The results of this project is intended to used in developing autonomous driving. Our self-created datasets (default 6000 sets of map and trajectory) simulated human walking in cross-road traffic conditions, such as human crossing road through the zebra lanes. Train context_gen script to generate context and trajectory by yourself.  
+This is a pilot project, our purpose is to train models to predict human trajectories given the past trajectory. The results of this project is intended to used in developing autonomous driving. 
+
+Our self-created datasets (default 6000 sets of map and trajectory) simulated human walking cross the crossroad through the zebra crossing. 
 
 
-VRU approaches specification
+### VRU approaches specification
 
 the challenge of this project is to combine context information with the trajectory information (x, y coordinate here) in predicting the future trajectory with RNN. Different approahces we've tried differ in their ways of encoding context info and combining with the trajecotory featuers. 
 
@@ -17,8 +18,9 @@ the challenge of this project is to combine context information with the traject
 
 * context_patch: a patch of the orginal context cropped for each data point on a trajectory as the center. for a training sample, the shape is usually (None, sequence_length, patch_size * patch_size)
 
-
 <pre>
+
+
 	 x/y,   delta x/y,  context, context patch   CNN      RNN   fc
 
 vru:	 -	    - 	      -		            context   all     -
