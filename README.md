@@ -4,7 +4,6 @@ This is a pilot project, our purpose is to train models to predict human traject
 
 Our self-created datasets (default 6000 sets of map and trajectory, which can be made into >10k training samples) simulated human walking cross the crossroad through the zebra crossing. 
 
-
 #### VRU approaches specification
 
 the challenge of this project is to combine context information with the trajectory information (x, y coordinate here) in predicting the future trajectory with RNN. Different approahces we've tried differ in their ways of encoding context info and combining with the trajecotory featuers. 
@@ -37,4 +36,11 @@ Aside from using a simpe RNN to encode the context image, we also tried to use a
 
 <img src="https://raw.githubusercontent.com/celisun/autonomous_driving_human_trajectory_prediction/master/img/I_reconstructed0.png" width="500">
 
+#### Prediction results
+
+I give two exampels of our training results: the blue line us the human past trajectory, orange dots are ground gruth trajectory at the next 6 timestamps with 15Hz frequency, green dots are prediction results from neuron networks.
+
+<img src="https://raw.githubusercontent.com/celisun/autonomous_driving_human_trajectory_prediction/master/img/VRU_2.png" width="500"> <img src="https://raw.githubusercontent.com/celisun/autonomous_driving_human_trajectory_prediction/master/img/VRU_3.png" width="500">
+
+So far we observed that the context information is still not yet combined and learned efficiently. The training was also hard to converge. The results are not much better than training the x, y features (on RNN for examples) alone. 
 
