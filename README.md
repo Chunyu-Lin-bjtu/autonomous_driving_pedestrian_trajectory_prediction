@@ -32,7 +32,8 @@ vru_s:   	    -	      -			              all     -
 'all' in RNN means the x,y or delta x, y featuers with the output vector of CNN  if appicable.
 </pre>
 
-We also tried to use an autoencoder vae to encode the context patches and combine with the x/y feature.The following is a visualization of a trained vae model for context images. The left blurried one is a vae reconstructed image while its immediate right is the orginal image.
+#### VAE 
+Aside from using simpe RNN to encode the context image, we also tried to use an autoencoder vae to encode the context patches and combine with the x/y feature.The following is a visualization of a trained vae model for context images. The left blurried one is a vae reconstructed image while its immediate right is the orginal image.
 
 <img src="https://raw.githubusercontent.com/celisun/autonomous_driving_human_trajectory_prediction/img/I_reconstructed0.png" width="300">
 
