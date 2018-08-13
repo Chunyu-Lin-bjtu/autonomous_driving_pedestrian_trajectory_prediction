@@ -35,6 +35,6 @@ vru_s:   	    -	      -			              all     -
 #### VAE 
 Aside from using a simpe RNN to encode the context image, we also tried to use an autoencoder vae to encode the context patches and then combine with the x/y feature to feed in RNN.The following is a visualization of a trained vae model for context images. The left blurried one is a vae reconstructed image compared with its immediate right image which is the orginal one.
 
-<img src="https://raw.githubusercontent.com/celisun/autonomous_driving_human_trajectory_prediction/master/img/I_reconstructed0.png" width="300">
+<img src="https://raw.githubusercontent.com/celisun/autonomous_driving_human_trajectory_prediction/master/img/I_reconstructed0.png" width="500">
 
 
