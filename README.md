@@ -5,7 +5,7 @@ This is a pilot project, our purpose is to train models to predict human traject
 Our self-created datasets (default 6000 sets of map and trajectory, which can be made into >10k training samples) simulated human walking cross the crossroad through the zebra crossing. 
 
 
-### VRU approaches specification
+#### VRU approaches specification
 
 the challenge of this project is to combine context information with the trajectory information (x, y coordinate here) in predicting the future trajectory with RNN. Different approahces we've tried differ in their ways of encoding context info and combining with the trajecotory featuers. 
 
@@ -32,8 +32,8 @@ vru_s:   	    -	      -			              all     -
 'all' in RNN means the x,y or delta x, y featuers with the output vector of CNN  if appicable.
 </pre>
 
-We lalso tried to use a autoencoder vae to encode the context patches and combine with the x/y feature.The following is a visualization of trained vae model for context images.
+We also tried to use an autoencoder vae to encode the context patches and combine with the x/y feature.The following is a visualization of a trained vae model for context images. The left blurried one is a vae reconstructed image while its immediate right is the orginal image.
 
-<img src="https://raw.githubusercontent.com/celisun/autonomous_driving_human_trajectory_prediction/img/I_reconstructed0.png ">
+<img src="https://raw.githubusercontent.com/celisun/autonomous_driving_human_trajectory_prediction/img/I_reconstructed0.png", width="300">
 
 
