@@ -21,7 +21,7 @@ the challenge of this project is to combine context information with the traject
 
 
 <pre>
-	 x,y,   delta x,y,  context, context patch   CNN      RNN   fc
+model	 x,y,   delta x,y,  context, context patch   CNN      RNN   fc
 
 vru:	 -	    - 	      -		            context   all     -
 vru2:               -                     -         patch     all     -
