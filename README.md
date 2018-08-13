@@ -38,7 +38,9 @@ Aside from using a simpe RNN to encode the context image, we also tried to use a
 
 #### Empirical results
 
-So far we observed that a simple CNN encoding or even a patch building still could not combine the context information with the trajectory information and influence the prediction resutls efficiently. The network seemed to predict mainly based the trajectory line and not learn how different context, e.g. the zebra crossing, could indicate the trajectory. We also foud it hard hard to converge during training when concatenate context behind x,y (and/or delta x,y). The results are not much better than training the x, y features on RNN for examples alone. However, the neural network prediction still slightly outperformed the lienar regresssion predition.
+So far we observed that a simple CNN encoding of context or a patch building still could not good enough combine context information with the trajectory information and influence the prediction resutls efficiently. The network seemed to predict future trajctory still mainly based the past trajectory line without considering how the corresponding context, e.g. at zebra crossing, could indicate the future trajectory. We also foud it hard hard to converge during training when concatenate context after x,y (and/or delta x,y) for RNN training. 
+
+Generally, the results are not much better than training the x, y features on RNN for examples alone. However, the neural network prediction still slightly outperformed the lienar regresssion predition.
 
 Following are two exampels of our training results: the blue line us the human past trajectory, orange dots are ground gruth trajectory at the next 6 timestamps with 15Hz frequency, green dots are prediction results from neuron networks.
 <img src="https://raw.githubusercontent.com/celisun/autonomous_driving_human_trajectory_prediction/master/img/VRU_2.png" width="500"> <img src="https://raw.githubusercontent.com/celisun/autonomous_driving_human_trajectory_prediction/master/img/VRU_3.png" width="500">
