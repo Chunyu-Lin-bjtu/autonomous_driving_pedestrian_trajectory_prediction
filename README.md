@@ -40,7 +40,7 @@ Aside from using a simpe RNN to encode the context image, we also tried to use a
 
 So far we observed that a simple CNN encoding of context or a patch building still could not good enough combine context information with the trajectory information and influence the prediction resutls efficiently. The network seemed to predict future trajctory still mainly based the past trajectory line without considering how the corresponding context, e.g. at zebra crossing, could indicate the future trajectory. We also foud it hard hard to converge during training when concatenate context after x,y (and/or delta x,y) for RNN training. 
 
-Generally, the results are not much better than training the x, y features on RNN for examples alone. However, the neural network prediction still slightly outperformed the lienar regresssion predition.
+Generally, the results are not much better than learning from the x, y features on RNN alone. However, a neural network prediction would still slightly outperforme the prediction solely based on linear regression of trajectories.
 
 Following are two exampels of our training results: the blue line us the human past trajectory, orange dots are ground gruth trajectory at the next 6 timestamps with 15Hz frequency, green dots are prediction results from neuron networks.
 <img src="https://raw.githubusercontent.com/celisun/autonomous_driving_human_trajectory_prediction/master/img/VRU_2.png" width="500"> <img src="https://raw.githubusercontent.com/celisun/autonomous_driving_human_trajectory_prediction/master/img/VRU_3.png" width="500">
