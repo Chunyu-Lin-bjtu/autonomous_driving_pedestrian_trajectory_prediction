@@ -31,3 +31,8 @@ vru_s:   	    -	      -			              all     -
 '-' means in use.
 'all' in RNN means the x,y or delta x, y featuers with the output vector of CNN  if appicable.
 </pre>
+
+We lalso tried to use a autoencoder vae to encode the context patches and combine with the x/y feature.The following is a visualization of trained vae model for context images.
+
+
+
