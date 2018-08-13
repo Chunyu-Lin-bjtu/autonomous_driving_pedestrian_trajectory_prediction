@@ -15,7 +15,7 @@ from vm_config import set_train_args
 from data_loader import DataLoader
 
 args = set_train_args()
-num_sample = 6000
+# num_sample = 6000
 input_dim = args.target_size ** 2 * 1  # patch image's size^2 * n_channels
 
 
@@ -191,8 +191,6 @@ def trainer(learning_rate=1e-3, batch_size=100, num_epoch=1000, n_z=5):
 
 
 if __name__ == "__main__":
-
-    args = set_train_args()
     batch_size = 25
 
     dataloader = DataLoader(
