@@ -1,6 +1,6 @@
 # Autonomous Driving Human Trajectory Prediction
 
-This is a pilot project, our purpose is to train models to predict human trajectories given the past trajectory. The results of this project is intended to used in developing autonomous driving. 
+This is a pilot project, our purpose is to train models to predict human trajectories given the past trajectory in developing autonomous driving. 
 
 Our self-created datasets (default 6000 sets of map and trajectory, which can be made into >10k training samples) simulated human walking cross the crossroad through the zebra crossing. 
 
@@ -18,9 +18,9 @@ the challenge of this project is to combine context information with the traject
 
 * context_patch: a patch of the orginal context cropped for each data point on a trajectory as the center. for a training sample, the shape is usually (None, sequence_length, patch_size * patch_size)
 
+
+
 <pre>
-
-
 	 x/y,   delta x/y,  context, context patch   CNN      RNN   fc
 
 vru:	 -	    - 	      -		            context   all     -
