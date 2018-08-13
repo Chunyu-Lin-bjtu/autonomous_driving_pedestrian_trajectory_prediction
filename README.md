@@ -2,7 +2,7 @@
 
 This is a pilot project, our purpose is to train models to predict human trajectories given the past trajectory in developing autonomous driving. 
 
-Our self-created datasets (default 6000 sets of map and trajectory, which can be made into >10k training samples) simulated human walking cross the crossroad through the zebra crossing. 
+Our self-created datasets (default 6000 sets of map and trajectory, which can be made into >15k training samples) simulated human walking cross the crossroad through the zebra crossing. 
 
 #### VRU approaches specification
 
