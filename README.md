@@ -44,3 +44,11 @@ Generally, the results are not much better than learning from the x, y features 
 
 Following are two exampels of our training results: the blue line us the human past trajectory, orange dots are ground gruth trajectory at the next 6 timestamps with 15Hz frequency, green dots are prediction results from neuron networks.
 <img src="https://raw.githubusercontent.com/celisun/autonomous_driving_human_trajectory_prediction/master/img/VRU_2.png" width="500"> <img src="https://raw.githubusercontent.com/celisun/autonomous_driving_human_trajectory_prediction/master/img/VRU_3.png" width="500">
+
+## Dependencies
+* python
+* tensorflow
+* numpy
+* pickle
+* pandas
+* cv2
