@@ -20,19 +20,19 @@ the challenge of this project is to combine context information with the traject
 
 
 <pre>
-model	 x,y,   delta x,y,  context, context patch   CNN      RNN   fc
+model	 x,y    delta x,y   context  context_patch   CNN      RNN   fc
 
 vru:	 -	    - 	      -		            context   all     -
-vru2:               -                     -         patch     all     -
+vru2:               -                     -         context_patch     all     -
 vru3:  	 -	   (-)	      -                     context   x/y (or x,y + delta x,y)    -
 vru_s:   	    -	      -			              all     -
 
 '-' means in use.
-'all' in RNN means the x,y or delta x, y featuers with the output vector of CNN (or context itself).
+'all' in RNN means the x,y or delta x,y featuers with the output vector of CNN (or context itself).
 </pre>
 
 #### VAE 
-Aside from using a simpe RNN to encode the context image, we also tried to use an autoencoder vae to encode the context patches and then combine with the x/y feature to feed in RNN.The following is a visualization of a trained vae model for context images. The **left** blurried one is a vae reconstructed image compared with its immediate **right** image which is the orginal one.
+Aside from using a simpe RNN to encode the context image, we also tried to use an autoencoder vae to encode the context patches and then combine with the delta x, y feature to train in RNN.The following is a visualization of a trained vae model for context images. The **left** blurried one is a vae reconstructed image, compared with its immediate **right** image which is the orginal one.
 
 <img src="https://raw.githubusercontent.com/celisun/autonomous_driving_human_trajectory_prediction/master/img/I_reconstructed0.png" width="500">
 
@@ -46,7 +46,7 @@ Following are two exampels of our training results: the blue line us the human p
 <img src="https://raw.githubusercontent.com/celisun/autonomous_driving_human_trajectory_prediction/master/img/VRU_2.png" width="500"> <img src="https://raw.githubusercontent.com/celisun/autonomous_driving_human_trajectory_prediction/master/img/VRU_3.png" width="500">
 
 ## Dependencies
-* python
+* python2
 * tensorflow
 * numpy
 * pickle
