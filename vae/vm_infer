@@ -1,0 +1,114 @@
+import os
+import tensorflow as tf
+
+import matplotlib
+import matplotlib.pyplot as plt
+matplotlib.use('Agg')
+
+from data_loader import DataLoader
+from vm_model import VMModel
+from vae import VariantionalAutoencoder
+from vm_config import set_train_args
+
+import random
+
+def visualize_prediction(past, ground_truth, predicted, context, dump_path):
+    """
+    Visualize on jpg the past trajectory, future trajectory and predicted future
+    trajectory in context.
+
+    :param past:
+    :param ground_truth:
+    :param predicted:
+    :param context:
+    :param dump_path:
+    """
+    plt.imshow(context)
+    for traj in [past, ground_truth, predicted]:
+        plt.scatter(traj[:, 1], traj[:, 0])
+    plt.show()
+    plt.savefig(dump_path)
+
+
+if __name__ == '__main__':
+    args = set_train_args()
+    tf.reset_default_graph()
+    
+    # configure GPU training, soft allocation.
+    gpuConfig = tf.ConfigProto(allow_soft_placement=True)
+    gpuConfig.gpu_options.allow_growth = True
+
+    dataloader = DataLoader(
+        data_root_dir=args.data_root_dir,
+        train_batch_size=args.batch_size,
+        val_batch_size=args.batch_size,
+        seq_length=args.seq_length,
+        frequency=args.frequency,
+        discrete_timestamps=args.discrete_timestamps,
+        target_size=args.target_size,
+        context_files_root_dir=args.context_files_root_dir,
+        csv_files_root_dir=args.csv_files_root_dir
+    )
+
+    print "\n\ndatasets loaded.\n\n"
+
+    # load pre-trained vae model
+    vae = VariantionalAutoencoder(learning_rate=1e-4, batch_size=100, n_z=args.n_z)
+    model_loading_path_vae = args.model_loading_path_vae
+    saver = tf.train.Saver()
+    saver.restore(tf.Session(), model_loading_path_vae)
+
+    print "\n\nvae model loaded.\n\n"
+
+    with tf.Session() as sess:
+
+        vmmodel = VMModel(args)
+        saver.restore(sess, args.optimal_model_path)
+        # tf.initialize_all_variables().run()
+
+        print "\n\nVM model loaded.\n\n"
+
+        for n in range(1):
+
+            # context_data_whole shape: (N * seq_length, target_size * target_size), downsize and /500
+            # input batch shape: (batch_size, seq_length, feature_size)
+            # target batch shape: (batch_size, seq_length, discrete_steps, feature_size)
+            # context_data: (batch_size, 1280, 1280)
+            input_data, target_data, context_data_whole, context_data = dataloader.next_batch(mode='train')
+
+            # encode context to z by VAE
+            z = vae.transformer(context_data_whole)
+            z = z.reshape((-1, args.seq_length, args.n_z))
+
+            print "\n\nstarts predicting.\n\n"
+
+            # Get prediction results
+            complete_input, batch_error_train, target_delta, predicted_outputs, tf_predicted_outputs= sess.run(
+                fetches=[
+                    vmmodel.complete_input,
+                    vmmodel.loss,
+                    vmmodel.target_data_delta,
+                    vmmodel.predicted_outputs,
+                    vmmodel.tf_predicted_outputs
+                ],
+                feed_dict={
+                    vmmodel.input_data: input_data / 4.,
+                    vmmodel.target_data: target_data / 4.,
+                    vmmodel.z: z
+                })
+
+            # pick a random sample from batch to visualize
+            pick_serial = random.randint(0, args.batch_size-1)
+            sample_name = 'vru_result_'+str(n)+'.png'
+            sample_dump_path = os.path.join(args.infer_dump_path, sample_name)
+            
+            print 'target data = {}'.format(target_data[0][-1])
+            print 'target delta = {}'.format(target_delta[0][-1])
+            print 'predicted outputs = {}'.format(predicted_outputs[0][-1] * 4)
+            print 'predicted  = {}'.format(tf_predicted_outputs[0][-1] * 4)
+            print 'visualizing predicting results.\n\n'
+            visualize_prediction(input_data[pick_serial],
+                                 target_data[pick_serial][-1],
+                                 tf_predicted_outputs[pick_serial][-1] * 4,
+                                 context_data[pick_serial],
+                                 sample_dump_path)
