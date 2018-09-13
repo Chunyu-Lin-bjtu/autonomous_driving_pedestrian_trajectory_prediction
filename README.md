@@ -31,7 +31,7 @@ vru_s:   	    -	      -			              all     -
 'all' in RNN means the x,y or delta x,y featuers with the output vector of CNN (or context itself).
 </pre>
 
-here I only included the code example for vru2 approach.
+Here, I only included the code example of vru2 approach.
 
 #### VAE for context 
 Aside from using a simpe RNN to encode the context image, we also tried to use an autoencoder vae to encode the context patches and then combine with the delta x, y feature to train in RNN.The following is a visualization of a trained vae model for context images. The **left** blurried one is a vae reconstructed image, compared with its immediate **right** image which is the orginal one.
