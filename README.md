@@ -4,7 +4,7 @@ This is a pilot project, our purpose is to train models to predict context-aware
 
 To support our project, our self-created datasets (default 6000 sets of map and trajectory, which can be made into >15k training samples) simulated pedestrains' walking trajectories in a urban junction condition, such as cross the zebra crossing, follow the side-walk and so on. 
 
-#### VRU prediction approaches specification
+### VRU prediction approaches specification
 
 the challenge of this project is to combine context information with the trajectory information (x, y coordinate here) in predicting the future trajectory with RNN. Different approahces we've tried differ in their ways of encoding context info and combining with the trajecotory featuers. 
 
@@ -38,7 +38,7 @@ Aside from using a simpe RNN to encode the context image, we also tried to use a
 
 <img src="https://raw.githubusercontent.com/celisun/autonomous_driving_human_trajectory_prediction/master/img/I_reconstructed0.png" width="500">
 
-#### Some visualizaiton on results
+### Some visualizaiton on results
 
 So far we observed that a simple CNN encoding of context or a patch building still could not good enough combine context information with the trajectory information and influence the prediction resutls efficiently. The network seemed to predict future trajctory still mainly based the past trajectory line without considering how the corresponding context, e.g. at zebra crossing, could indicate the future trajectory. We also foud it hard hard to converge during training when concatenate context after x,y (and/or delta x,y) for RNN training. 
 
