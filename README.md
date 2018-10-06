@@ -1,8 +1,8 @@
 # Autonomous Driving Human Trajectory Prediction
 
-This is a pilot project, our purpose is to train models to predict human trajectories given the past trajectory in developing autonomous driving. 
+This is a pilot project, our purpose is to train models to predict context-aware pedestrain trajectories in support of the autonomous driving research and development. 
 
-Our self-created datasets (default 6000 sets of map and trajectory, which can be made into >15k training samples) simulated human walking cross the crossroad through the zebra crossing. 
+To support our project, our self-created datasets (default 6000 sets of map and trajectory, which can be made into >15k training samples) simulated pedestrains' walking trajectories in a urban junction condition, such as cross the zebra crossing, follow the side-walk and so on. 
 
 #### VRU prediction approaches specification
 
