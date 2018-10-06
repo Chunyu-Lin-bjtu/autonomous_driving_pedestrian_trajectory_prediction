@@ -33,12 +33,12 @@ vru_s:   	    -	      -			              all     -
 
 Here, I only included the code example of vru2 approach.
 
-#### VAE for context 
+#### context encoder
 Aside from using a simpe RNN to encode the context image, we also tried to use an autoencoder vae to encode the context patches and then combine with the delta x, y feature to train in RNN.The following is a visualization of a trained vae model for context images. The **left** blurried one is a vae reconstructed image, compared with its immediate **right** image which is the orginal one.
 
 <img src="https://raw.githubusercontent.com/celisun/autonomous_driving_human_trajectory_prediction/master/img/I_reconstructed0.png" width="500">
 
-#### Empirical results
+#### Some visualizaiton on results
 
 So far we observed that a simple CNN encoding of context or a patch building still could not good enough combine context information with the trajectory information and influence the prediction resutls efficiently. The network seemed to predict future trajctory still mainly based the past trajectory line without considering how the corresponding context, e.g. at zebra crossing, could indicate the future trajectory. We also foud it hard hard to converge during training when concatenate context after x,y (and/or delta x,y) for RNN training. 
 
